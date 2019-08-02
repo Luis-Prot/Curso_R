@@ -1,0 +1,170 @@
+```{r}
+library(readxl)
+Titanic <- read_excel('Pasajeros-Titanic.xlsx')
+
+Titanic
+```
+
+```{r}
+t1 <- table(Titanic$sobrevivio,Titanic$clase)
+t1
+t2 <- addmargins(t1)
+t2
+```
+
+```{r}
+barplot(t1, main="Sobrevivientes por Clase", xlab="Clase", col=c('red','green'),beside = TRUE)
+```
+```{r}
+galton <- read.csv('Galton.csv', sep=';')
+galton
+plot(galton, col="blue")
+women
+plot(women)
+mtcars
+plot(mtcars$mpg,mtcars$hp)
+datos <- read.csv('Datos_problema.csv') 
+datos
+plot(datos)
+```
+
+```{r}
+cov(galton$parent,galton$child)
+cov(mtcars$mpg,mtcars$hp)
+cov(women$height,women$weight)
+```
+
+```{r}
+cor(galton$parent,galton$child)
+plot(women$height,women$weight)
+plot(mtcars$mpg,mtcars$hp)
+```
+
+```{r}
+plot(datos$X55.3846,datos$X97.1795)
+```
+```{r}
+x <- scan()
+y <- scan()
+cor(x,y)^2
+cor(x,y)
+```
+
+```{r}
+X=seq(-1,1,length=100) # 100 puntos desde -1 a 1 
+Y=sqrt(1-X^2)  # ecuación de una circunferencia
+xy=data.frame(X,Y)
+plot(xy)
+cor(X,Y)^2
+attach(mtcars)
+plot(mpg,hp)
+lines(lowess(mpg,hp), col='red')
+```
+
+```{r}
+moneda <- c('cara', 'cruz')
+sample(moneda,3,replace = T)
+tiros <- sample(moneda,30,replace = T)
+tiros
+table(tiros)/30
+prop.table(table(tiros))
+hist(table(tiros))
+```
+
+```{r}
+tiros <- sample(moneda,100000,replace = T)
+prop.table(table(tiros))
+hist(table(tiros))
+dado <- c(1:6)
+tiros2 <- sample(dado,100000,replace = T)
+hist(table(tiros2))
+table(tiros2)
+```
+
+```{r}
+# Espacio muestral de una moneda lanzada 3 veces
+coin <- data.frame(pos=c("Aguila","Sol"))
+coin
+
+Tcoin <- expand.grid(T1=c("Aguila","Sol"),T2=c("Aguila","Sol"),T3=c("Aguilas","Soles"))
+Tcoin # Espacio de muestra
+
+sample(c("Aguilas","Soles"),5,replace = T)
+
+dado
+Sdado <- expand.grid(dado,dado,dado) # Aumentar el muesstreo
+Sdado
+```
+```{r}
+dado <- c(1:6)
+Sdado <- expand.grid(dado,dado,dado)
+sample(dado,10, replace = T, prob = c(0.1,0.1,0.1,0.4,0.2,0.1))
+```
+```{r}
+moneda <- c('sol','aguila')
+Smoneda <- expand.grid(moneda,moneda)
+tiros <- sample(moneda,100, replace = T, prob = c(0.6,0.4))
+table(tiros)
+```
+```{r}
+factorial(10)
+
+# nPr = n! / (n-r)!
+## Queremos acomodar tres numeros 3,4,5 en 2 cifras, ¿Cuantas combinaciones posbles puedo obtener'
+
+factorial(3)/factorial(3-2)
+choose(3,2)
+factorial(7)/factorial(7-5)
+choose(7,5)
+factorial(9)/factorial(9-5)
+choose(5,5)
+factorial(35)/factorial(35-3)
+choose(9,6)*choose(5,3)
+fis <- factorial(7)/factorial(7-5)
+mat <- factorial(3)/factorial(3-2)
+fis*mat
+```
+```{r}
+# Baraja de Inglesa
+palos <- c('D','P','T','C')
+numeros <- c('A',2:10,'J','Q','K')
+baraja <- as.vector(outer(numeros,palos,paste,sep=''))
+
+# Juguemos
+mano1 <- sample(baraja, 5,replace = F)
+mano2 <- sample(baraja,5,replace = F)
+mano1
+mano2
+```
+
+```{r}
+urna <- c('Negra','Blanca')
+sample(urna,1)
+```
+
+```{r}
+cajon <- c(rep("Azul",16),rep("Blanco",3),rep("Rojo",8),rep("Negro",9))
+cajon
+```
+
+```{r}
+com_mex <- c("Tacos","Tlacoyo","Tamal","Quesadilla","Gorditas","Huarache", "Hamburguesa","Enchiladas Suizas")
+com_flash <- c("Tacos","Hamburguesa","Tlacoyo","Sope")
+com_ext <- c("Hamburquesa","Pizza","Hotdog","Enchiladas Suizas")
+
+# Union de conjunto
+comida <- union(com_mex,com_flash)
+Scomida <- union(comida,com_ext)
+Scomida
+
+# Interseccion de conjuntos intersect()
+intersect(com_mex,com_ext)
+
+# Complemento de un conjunto setdiff() ^c
+Scomida
+setdiff(Scomida,com_flash)
+
+# Diferencia setdiff()
+setdiff(com_mex,com_ext)
+```
+
